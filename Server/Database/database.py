@@ -77,7 +77,7 @@ def GetCharData(id, name="me"):
         name = "enemy1"
 
     _mycursor.reset()
-    _mycursor.execute(f"SELECT chardata FROM gamesave WHERE name='{name}'")
+    _mycursor.execute("SELECT chardata FROM gamesave WHERE name=?", (name, ))
     result = _mycursor.fetchone()
     #_mycursor.nextset()
     return result[0]
