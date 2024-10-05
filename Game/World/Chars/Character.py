@@ -7,10 +7,9 @@ import World.WorldCommon as WC
 from World.WorldObject import WorldObject
 
 import UI.UI as UI
-
-import random
 import math
 from enum import IntEnum
+import secrets
 
 _charWidth = 120
 _charHeight = 100
@@ -62,7 +61,7 @@ class Character(WorldObject):
                             Character._LdChrSrf(base, "Attack", "atk", "up"),Character._LdChrSrf(base, "Attack", "atk", "right")]]
             self.animDir = AnimDir.DOWN
             self.animType = AnimType.IDLE
-            self.animTime = random.uniform(0, _animFrameLen * _numImages)
+            self.animTime = secrets.SystemRandom().uniform(0, _animFrameLen * _numImages)
 
             self.walkSound = WorldObject._loadSoundEffect("Data/Footsteps-in-grass-fast-www.fesliyanstudios.com.mp3")
             self.walkChannel = self.walkSound.play(loops=-1)
