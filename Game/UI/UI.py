@@ -1,11 +1,11 @@
 
 import pygame
-import xml.etree.ElementTree as ET
 from UI.UIImage import UIImage
 from UI.UIText import UIText
 from UI.UIButton import UIButton
 
 import UI.Chat as Chat
+import defusedxml.ElementTree
 
 def GetElementByID(id):
     global _uiIds
@@ -19,7 +19,7 @@ def Init():
     _uiObjects = []
     _uiIds = {}
 
-    tree = ET.parse("Data/UI.xml")
+    tree = defusedxml.ElementTree.parse("Data/UI.xml")
     root = tree.getroot()
     groups = root.find("Group")
     if groups is not None:

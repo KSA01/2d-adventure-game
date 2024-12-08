@@ -6,14 +6,14 @@ import math
 import pymunk
 import pymunk.pygame_util
 
-import xml.etree.cElementTree as ET
-
 import World.WorldCommon as WC
 from World.WorldObject import WorldObject
 from World.Chars.Player import Player
 from World.Chars.Enemies import Enemy
 
 import sys
+import defusedxml.ElementTree
+
 sys.path.append("../Server")
 import Network.mySocket as sck
 sys.path.pop()
@@ -46,7 +46,7 @@ def Init(screen_size, screen):
     _worldObjects = [WC.Players[0]]'''
     _worldObjects = []
 
-    tree = ET.parse(os.path.dirname(__file__) + "/../Data/WorldData.xml")
+    tree = defusedxml.ElementTree.parse(os.path.dirname(__file__) + "/../Data/WorldData.xml")
     root = tree.getroot() # "World" element
 
     objects = root.find("Objects")
