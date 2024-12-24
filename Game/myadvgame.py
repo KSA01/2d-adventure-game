@@ -8,6 +8,8 @@ import numpy as np
 import time
 
 import sys
+from security import safe_requests
+
 sys.path.append("../Server")
 import Network.mySocket as sck
 sys.path.pop()
@@ -31,7 +33,7 @@ from UI.UIButton import RegisterButtonAction
 #starts game with player at previous position
 def LoadPrevGame(id):
     try:
-        r = requests.get(url = "http://localhost:5005/loadgame/" + str(id))
+        r = safe_requests.get(url = "http://localhost:5005/loadgame/" + str(id))
         if r.status_code == requests.codes.ok:
             data = r.json()
             #WC.Players[0].SetCenterPosition(np.asfarray([data['x'], data['y']]), teleport=True)
@@ -53,7 +55,7 @@ def LoadPrevGame(id):
 #starts new game with player at default position
 def StartForRealThisTime(id):
     try:
-        r = requests.get(url = "http://localhost:5005/newgame/" + str(id))
+        r = safe_requests.get(url = "http://localhost:5005/newgame/" + str(id))
         if r.status_code == requests.codes.ok:
             data = r.json()
             #WC.Players[0].SetCenterPosition(np.asfarray([data['x'], data['y']]), teleport=True)
